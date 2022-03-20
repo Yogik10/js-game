@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My game</title>
+    <script src="src/classes/Entity.js"></script>
+    <script src="src/classes/Player.js"></script>
+    <script src="src/classes/Enemy.js"></script>
+    <script src="src/classes/FireBall.js"></script>
+    <script src="src/classes/Bonus.js"></script>
+    <script src="src/classes/Explosion.js"></script>
+    <script src="src/managers/GameManager.js"></script>
+    <script src="src/managers/MapManager.js"></script>
+    <script src="src/managers/SpriteManager.js"></script>
+    <script src="src/managers/EventsManager.js"></script>
+    <script src="src/managers/PhysicManager.js"></script>
+    <script src="src/managers/SoundManager.js"></script>
+</head>
+<body id="body" style='background: url("./public/pictures/white-cubes.png");'>
+    <div id="background">
+        <canvas id="canvasId" width="800px" height="600px" style="border:3px solid magenta; margin-left: 15%; margin-top: 3%;"></canvas>
+        <div style="background-color: rgb(202,198,198); float: right; border-radius: 15px; text-align: center; margin-top: 3%; margin-right: 100px;">
+            <p id="health"  style="font-size: 16pt; width: 300px; height: 30px;"></p>
+            <p id="score" style="font-size: 16pt; width: 300px; height: 30px;"></p>
+            <button id="muteButton" onclick="gameManager.mute()" style="font-size: 12pt; width: 150px; height: 40px; border-radius: 10px; margin-bottom: 20px;">Выкл звук</button>
+        </div>
+
+    </div>
+    <script>
+        function updateWorld(){
+            gameManager.update();
+        }
+
+        let canvas = document.getElementById("canvasId");
+        let ctx = canvas.getContext('2d');
+        let mapManager = new MapManager(800, 600);
+        let spriteManager = new SpriteManager();
+        let gameManager = new GameManager();
+        let eventsManager = new EventsManager();
+        let physicManager = new PhysicManager();
+        let soundManager = new SoundManager();
+
+        gameManager.loadAll(ctx, canvas);
+        gameManager.play();
+    </script>
+</body>
+</html>
